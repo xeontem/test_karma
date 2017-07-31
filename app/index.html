@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="testingAngularApp">
+<head>
+	<title>testing angulat js</title>
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+</head>
+<body ng-controller="testingAngularCtrl">
+<head><h1>{{title}}</h1></head>
+<section>
+	<form ng-submit="addDestination()">
+		City:<input type="text" ng-model="newDestination.city" name="">
+		Country:<input type="text" ng-model="newDestination.country" name="">
+		<input type="submit" value="ADD" name="">
+	</form>
+</section>
+<section><h2>Your Trip</h2>
+<div ng-repeat="dest in destinations">
+	<span>{{dest.city}}</span>
+	<span>{{dest.country}}</span>
+</div>
+
+</section>
+<script type="text/javascript" src="./js/app.js"></script>
+</body>
+</html>
