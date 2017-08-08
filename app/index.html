@@ -1,25 +1,107 @@
 <!DOCTYPE html>
 <html ng-app="testingAngularApp">
 <head>
-	<title>testing angulat js</title>
+	<title>AngularJS testing</title>
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
 </head>
-<body ng-controller="testingAngularCtrl">
-<head><h1>{{title}}</h1></head>
-<section>
-	<form ng-submit="addDestination()">
-		City:<input type="text" ng-model="newDestination.city" name="">
-		Country:<input type="text" ng-model="newDestination.country" name="">
-		<input type="submit" value="ADD" name="">
-	</form>
-</section>
-<section><h2>Your Trip</h2>
-<div ng-repeat="dest in destinations">
-	<span>{{dest.city}}</span>
-	<span>{{dest.country}}</span>
-</div>
+<body ng-controller="parent-controller">
+<h1>Parent title as <span>string</span>: {{title}}</h1>
+<h1>Parent title as <span>obj value</span>: {{obj.title}}</h1>
+<!-- ----------------------------------------------- emit broadcast events ---------------------------------------- -->
+<h1>Value emmitted in child custom event: {{parentCustomEmittedValue}}</h1>
+<h1>Value broadcasted in child custom event: {{parentCustomBroadcastedValue}}</h1>
+<!-- -------------------------------------------------------------------------------------------------------------- -->
+<button class="change-title" ng-click="applyt(title)">add + to title as string</button>
+<button class="change-title" ng-click="changeObjTitle()">add + to title as obj value</button>
+<hr>
+	<p>Value from child-child event: {{fromChildChildVal}}</p>
 
+<section class="child-controller" ng-controller="child-controller">
+	<h1>Child title as <span>string</span>: {{title}}</h1>
+	<h1>Child title as <span>obj value</span>: {{obj.title}}</h1>
+
+	<!-- ----------------------------------------------- emit broadcast events ---------------------------------------- -->
+	<h1>Value this scope emitted event: {{customEmittedValue}}</h1>
+	<h1>Value this scope broadcasted event: {{customBroadcastedValue}}</h1>
+	
+	<hr>
+	<h3>Emit event</h3>
+	<input type="text" ng-model="emitValue" name="">
+	<button ng-click="emitCustomEvent()">Emit myEvent</button>
+	<hr>
+	<h3>Broadcast event</h3>
+	<input type="text" ng-model="broadcastValue" name="">
+	<button ng-click="broadcastCustomEvent()">Broadcast myEvent2</button>
+	<hr>
+		<p>Value from child-child event: {{fromChildVal}}</p>
+	<!-- --------------------------------------------------------------------------------------------------------- -->
+
+	<div class="template" ng-controller="child-child-controller">
+		<h1>child-child-controller</h1>
+		<!-- ----------------------------------------------- emit broadcast events ---------------------------------------- -->
+		<h1>Value emmitted in parent custom event: {{childCustomEmittedValue}}</h1>
+		<h1>Value broadcasted in parent custom event: {{childCustomBroadcastedValue}}</h1>
+		<!-- -------------------------------------------------------------------------------------------------------------- -->
+		<hr>
+		<p>Value from child-child event: {{fromChildChildEvent}}</p>
+		<button ng-click="emitEvent()">emit child child event</button>
+	</div>
+
+	<button class="change-title" ng-click="changeStringTitle()">add + to title as string</button>
+	<button class="change-title" ng-click="changeObjTitle()">add + to title as obj value</button>
+	<form>
+		City:<input type="text" ng-model="city" name="">
+		Country:<input type="text" ng-model="country" name="">
+		<input type="submit" value="ADD" ng-click="addDestination({index: destinations.length, city, country})">
+		<input type="submit" value="CLEAR" ng-click="clearDestinations()">
+	</form>
+	<div class="dest-wrapper" style="border: none; color: grey;">
+			<span>№</span>
+			<span>city</span>
+			<span>country</span>
+			<span>action</span>
+		</div>
+	<div ng-repeat="dest in destinations">
+		<div class="dest-wrapper">
+			<span>{{dest.index}}</span>
+			<span>{{dest.city}}</span>
+			<span>{{dest.country}}</span>
+			<button ng-click="removeDestination(dest.index)">remove</button>
+		</div>
+	</div>
 </section>
-<script type="text/javascript" src="./js/app.js"></script>
+
+<section class="child-controller">
+	<h2>Templates and direcives usage</h2>
+	<!-- <div ng-model="testDirectives"> -->
+	<my-directive collapse="title" title="'directive scope title'" applyt="applyt()"></my-directive>
+	
+	<!-- </div> -->
+</section>
+
+<section class="child-controller">
+	<car model="nissan" brakes wheels></car>
+	<car model="audi" engine wheels doors></car>
+</section>
+
+<section class="child-controller">
+	<weather></weather>
+</section>
+
+<section class="child-controller">
+	<test></test>
+</section>
+
+	<script type="text/javascript" src="./js/test.module.js"></script>
+	<script type="text/javascript" src="./js/test.controller.js"></script>
+	<script type="text/javascript" src="./js/child.controller.js"></script>
+	<script type="text/javascript" src="./js/child.child.controller.js"></script>
+	<script type="text/javascript" src="./js/test.directive.js"></script>
+	<script type="text/javascript" src="./js/require.directive.js"></script>
+	<script type="text/javascript" src="./js/weather.directive.js"></script>
+	<script type="text/javascript" src="./js/weather.service.js"></script>
+	<script type="text/javascript" src="./js/FPS.directive.js"></script>
+	<script type="text/javascript" src="./js/services/service.js"></script>
 </body>
 </html>

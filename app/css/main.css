@@ -1,0 +1,51 @@
+body {
+	padding: 20px;
+	border: 2px solid red;
+}
+
+.child-controller {
+	margin: 20px;
+	padding: 20px;
+	border: 2px solid blue;
+}
+
+.change-title {
+	margin-bottom: 20px;
+}
+
+.template {
+	margin: 20px;
+	padding: 20px;
+	border: 2px solid green;
+}
+
+h1 span {
+	color: red;
+}
+
+.dest-wrapper {
+	display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  min-width: 300px;
+  max-width: 600px;
+  border: 1px solid;
+}
+
+.dest-wrapper span, .dest-wrapper button {
+	margin: 10px;
+}
+
+.weather-container {
+	margin: 5px;
+	padding: 5px;
+	border: 2px solid cyan;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+img {
+	width: 50px;
+}
